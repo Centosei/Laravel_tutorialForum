@@ -15,8 +15,7 @@ return new class extends Migration
     {
         Schema::create('threads', function (Blueprint $table) {
 	    $table->id();
-	    $table->unsignedBigInteger('tutorial_id');
-	    $table->foreign('tutorial_id')->reference('id')->on('tutorials');
+	    $table->foreignId('tutorial_id')->constrained();
 	    $table->dateTime('created_at')->useCurrent();
 	    $table->dateTime('updated_at')->useCurrent()->useCurrentOnUpdate();
         });

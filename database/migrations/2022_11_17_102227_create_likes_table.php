@@ -15,10 +15,9 @@ return new class extends Migration
     {
         Schema::create('likes', function (Blueprint $table) {
 	    $table->id();
-	    $table->unsignedBigInteger('tutorial_id');
-	    $table->foreign('tutorial_id')->reference('id')->on('tutorials');
-	    $table->unsignedBigInteger('user_id');
-	    $table->foreign('user_id')->reference('id')->on('users');
+	    $table->foreignId('tutorial_id')->constrained();
+	    $table->foreignId('user_id')->constrained();
+	    $table->unique(['tutorial_id', 'user_id']);
             $table->datetime('created_at')->useCurrent();
         });
     }

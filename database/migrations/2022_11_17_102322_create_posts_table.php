@@ -15,12 +15,10 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
 	    $table->id();
-	    $table->unsignedBigInteger('thread_id');
-	    $table->foreign('thread_id')->reference('id')->on('tutorials');
-	    $table->unsignedBigInteger('user_id');
-	    $table->foreign('user_id')->reference('id')->on('users');
+	    $table->foreignId('thread_id')->constrained();
+	    $table->foreignId('user_id')->constrained();
 	    $table->text('comment');
-	    $table->dateTime('created_at')->useCurrent();
+	    $table->datetime('created_at')->useCurrent();
         });
     }
 
